@@ -1,5 +1,6 @@
 package ru.practicum.steps;
 
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import ru.practicum.models.Courier;
@@ -12,6 +13,7 @@ public class CourierSteps {
     public static final String LOGIN_COURIER = "/api/v1/courier/login";
     public static final String DELETE_COURIER = "/api/v1/courier/{id}";
 
+    @Step("Создание нового курьера")
     public ValidatableResponse createCourier(Courier courier){
         return given()
                 .baseUri(URL)
@@ -21,6 +23,7 @@ public class CourierSteps {
                 .post(CREATE_COURIER)
                 .then();
     }
+    @Step("Вход в систему под логином курьера")
     public ValidatableResponse loginCourier(Courier courier){
         return given()
                 .baseUri(URL)
@@ -31,6 +34,7 @@ public class CourierSteps {
                 .then();
     }
 
+    @Step("Удаление курьера из базы данных")
     public ValidatableResponse deleteCourier(Integer id) {
         return given()
                 .baseUri(URL)
